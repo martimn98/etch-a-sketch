@@ -1,0 +1,59 @@
+html,
+body {
+    height: 100%;
+    background-color: antiquewhite;
+    color: rgb(44, 44, 44);
+    margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#title {
+    color:darkslategray;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 1rem;
+}
+
+#footer {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+#grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50rem;
+    height: 50rem;
+    background-color: black;
+}
+
+.grid-line {
+    display: flex;
+}
+
+.grid-element {
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+    outline: solid rgb(44, 44, 44) 2px;
+}
+
+.grid-element:hover {
+    background-color: aquamarine;
+}
