@@ -1,32 +1,82 @@
 const gridContainer = document.getElementById("grid-container");
 const width = gridContainer.offsetWidth;
 const height = gridContainer.offsetHeight;
-const size = 16;
+let size = 16;
 
-const elementWidth = width / size;
-const elementHeight = height / size;
+let elementsList = [];
+let linesList = [];
 
-const elementsList = [];
+// SLIDER
+const slider = document.getElementById("resize-slider")
+const output = document.getElementById("resize-slider-output");
+output.innerHTML = slider.value;
 
-for (let i = 0; i < size; i++) {
-    let gridLine = document.createElement("div");
-    gridLine.classList.add("grid-line");
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  size = this.value
+  resizeGrid();
+}
 
-    for(let j = 0; j < size; j++)
-    {
-        let gridElement = document.createElement("div");
-        gridElement.classList.add("grid-element");
-        gridElement.style.width = elementWidth + "px";
-        gridElement.style.height = elementHeight + "px";
+/////////////////////////////
+// MAIN
+/////////////////////////////
+createGrid();
 
-        gridElement.addEventListener("mouseenter", paint);
+
+
+//FUNCTIONS
+function createGrid()
+{
+    let elementWidth = width / size;
+    let elementHeight = height / size;
+
+    for (let i = 0; i < size; i++) {
+        let gridLine = document.createElement("div");
+        gridLine.classList.add("grid-line");
+        linesList.push(gridLine);
     
-        gridLine.appendChild(gridElement);    
-
-        elementsList.push(gridElement);
+        for(let j = 0; j < size; j++)
+        {
+            let gridElement = document.createElement("div");
+            gridElement.classList.add("grid-element");
+            gridElement.style.width = elementWidth + "px";
+            gridElement.style.height = elementHeight + "px";
+    
+            gridElement.addEventListener("mouseenter", paint);
+        
+            gridLine.appendChild(gridElement);    
+    
+            elementsList.push(gridElement);
+        }
+    
+        gridContainer.appendChild(gridLine); 
     }
+}
 
-    gridContainer.appendChild(gridLine); 
+function deleteGrid()
+{
+    elementsList.forEach(element => {
+        element.remove();
+    });
+
+    linesList.forEach(element => {
+        element.remove();
+    })
+}
+
+function resizeGrid()
+{
+    deleteGrid();
+    createGrid();
+}
+
+function resize()
+{
+    do{
+        size = parseInt(window.prompt("Grid size (1 to 100):", ""), 10);
+    }while(isNaN(size) || size > 100 || size < 1);
+
+    resizeGrid();
 }
 
 function paint(element)
