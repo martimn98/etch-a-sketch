@@ -15,6 +15,9 @@ output.innerHTML = slider.value;
 const clear = document.getElementById("clear-button");
 clear.addEventListener("click", clearGrid);
 
+// COLOR PICKER
+const colorPicker = document.getElementById("color");
+
 slider.oninput = function() {
   output.innerHTML = this.value;
   size = this.value
@@ -72,6 +75,7 @@ function clearGrid()
 {
     elementsList.forEach(element => {
         element.classList.remove("painted");
+        element.style.backgroundColor = "";
     })
 }
 
@@ -93,4 +97,5 @@ function resize()
 function paint(element)
 {
     element.currentTarget.classList.add("painted");
+    element.currentTarget.style.backgroundColor = colorPicker.value;
 }

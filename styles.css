@@ -63,6 +63,40 @@ a {
     background-color: aquamarine;
 }
 
+#tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.color-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#color::-webkit-color-swatch {
+    border-radius: 15%;
+    border: none;
+}
+
+#color::-moz-color-swatch {
+    border-radius: 15%;
+    border: none;
+}
+
 button {
     background: darkslategray;
     color: antiquewhite;
