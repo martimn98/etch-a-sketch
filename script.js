@@ -11,6 +11,10 @@ const slider = document.getElementById("resize-slider")
 const output = document.getElementById("resize-slider-output");
 output.innerHTML = slider.value;
 
+// CLEAR
+const clear = document.getElementById("clear-button");
+clear.addEventListener("click", clearGrid);
+
 slider.oninput = function() {
   output.innerHTML = this.value;
   size = this.value
@@ -61,6 +65,13 @@ function deleteGrid()
 
     linesList.forEach(element => {
         element.remove();
+    })
+}
+
+function clearGrid()
+{
+    elementsList.forEach(element => {
+        element.classList.remove("painted");
     })
 }
 
