@@ -18,6 +18,8 @@ clear.addEventListener("click", clearGrid);
 // COLOR PICKER
 const colorPicker = document.getElementById("color");
 
+let mouseDown = false;
+
 slider.oninput = function() {
   output.innerHTML = this.value;
   size = this.value
@@ -29,7 +31,9 @@ slider.oninput = function() {
 /////////////////////////////
 createGrid();
 
-
+document.body.onmouseup = function() {
+    mouseDown = false;
+}
 
 //FUNCTIONS
 function createGrid()
@@ -37,10 +41,9 @@ function createGrid()
     let elementWidth = width / size;
     let elementHeight = height / size;
 
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+
     for (let i = 0; i < size; i++) {
-        let gridLine = document.createElement("div");
-        gridLine.classList.add("grid-line");
-        linesList.push(gridLine);
     
         for(let j = 0; j < size; j++)
         {
@@ -49,16 +52,15 @@ function createGrid()
             gridElement.style.width = elementWidth + "px";
             gridElement.style.height = elementHeight + "px";
     
-            gridElement.addEventListener("mouseenter", paint);
-        
-            gridLine.appendChild(gridElement);    
-    
+            gridElement.addEventListener("mousedown", () => mouseDown = true);
+            gridElement.addEventListener("mouseover", paint);
             elementsList.push(gridElement);
+
+            gridContainer.appendChild(gridElement); 
         }
-    
-        gridContainer.appendChild(gridLine); 
     }
 }
+
 
 function deleteGrid()
 {
@@ -96,6 +98,8 @@ function resize()
 
 function paint(element)
 {
+    if(!mouseDown) return;
+
     element.currentTarget.classList.add("painted");
     element.currentTarget.style.backgroundColor = colorPicker.value;
 }

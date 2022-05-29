@@ -35,13 +35,10 @@ a {
 }
 
 #grid-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
     width: 50rem;
     height: 50rem;
-    background-color: black;
+    background-color: darkslategray;
 }
 
 .grid-line {
