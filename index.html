@@ -11,22 +11,24 @@
 <body>
     <div id="title">ETCH-A-SKETCH</div>
     <div id="slider-container"> 
-        <input type="range" min="1" max="100" value="16" class="slider" id="resize-slider">
+        <input type="range" min="1" max="100" value="16" class="slider hoverable" id="resize-slider">
         <output for="range" id="resize-slider-output"></output>
         <!-- <button id="resize-button">GRID SIZE</button> -->
     </div>
     <div id="tools">
-        <button id="clear-button">CLEAR</button>
+        <button id="clear-button" class="hoverable">CLEAR</button>
         <div class="color-container">
             <input type="color" name="color" id="color">
         </div>
-        <button id="eraser-button">ERASER</button>
+        <button id="eraser-button" class="hoverable">ERASER</button>
 
     </div>
     <div id="grid-container"></div>
     <div id="footer">
-        <a href="github.com/martimn98">martimn98</a>
-        <a href="https://www.flaticon.com/free-icons/eraser" title="eraser icons">Eraser icons created by Iconjam - Flaticon</a>
+        <h3 >
+            © 2022 <a class="hoverable" href="https://github.com/martimn98">martimn98</a>
+        </h3>
+        <a class="hoverable" href="https://www.flaticon.com/free-icons/eraser" title="eraser icons">Eraser icons created by Iconjam - Flaticon</a>
     </div>    
 </body>
 </html>

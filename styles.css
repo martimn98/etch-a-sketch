@@ -7,6 +7,7 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 16px;
     color: darkslategray;
+    min-height: 40rem;
 }
 
 body {
@@ -26,34 +27,41 @@ body {
 }
 
 #footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 1rem;
 }
 
 a {
     text-decoration: none;
-    color: cornflowerblue;
+    color: darkslategray;
+}
+
+h3 {
+    margin: auto;
 }
 
 #grid-container {
     display: grid;
-    width: 50rem;
-    height: 50rem;
-    background-color: darkslategray;
-}
-
-.grid-line {
-    display: flex;
+    height: 100%;
+    max-height: 90vw;
+    aspect-ratio: 1/1;
 }
 
 .grid-element {
     width: 100%;
     height: 100%;
     background-color: antiquewhite;
-    outline: solid rgb(44, 44, 44) 1px;
+    outline: solid darkslategray 1px;
 }
 
 .grid-element:hover {
     background-color: aquamarine;
+}
+
+.grid-element.painted:hover {
+    opacity: 0.9;
 }
 
 
@@ -98,12 +106,8 @@ button {
     font-weight: bold;
     border: none;
     padding: 4px 12px;
-    opacity: 0.7;
 }
 
-button:hover {
-    opacity: 1;
-}
 
 #slider-container {
     display: flex;
@@ -125,14 +129,10 @@ output {
     height: 1rem;
     background: #d3d3d3;
     outline: none;
-    opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
 }
 
-.slider:hover {
-    opacity: 1;
-}
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -148,4 +148,12 @@ output {
     height: 1rem;
     background: darkslategray;
     cursor: pointer;
+}
+
+.hoverable {
+    opacity: 0.7;
+}
+
+.hoverable:hover {
+    opacity: 1;
 }

@@ -59,10 +59,10 @@ function updateMouse()
 //FUNCTIONS
 function createGrid()
 {
-    let elementWidth = width / size;
-    let elementHeight = height / size;
 
-    gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+    gridContainer.style.gridTemplateColumns = `repeat(${size}, minmax(0, 1fr)`;
+
+    
 
     for (let i = 0; i < size; i++) {
     
@@ -70,8 +70,6 @@ function createGrid()
         {
             let gridElement = document.createElement("div");
             gridElement.classList.add("grid-element");
-            gridElement.style.width = elementWidth + "px";
-            gridElement.style.height = elementHeight + "px";
     
             gridElement.addEventListener("click", (element) => {
                 mouseDown = !mouseDown;
@@ -82,7 +80,8 @@ function createGrid()
             elementsList.push(gridElement);
 
             gridContainer.appendChild(gridElement);
-            gridContainer.addEventListener("mouseleave", () => {
+            gridContainer.addEventListener("mouseleave", () => 
+{
                 mouseDown = false
                 updateMouse();
             });
