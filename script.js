@@ -6,6 +6,9 @@ let size = 16;
 let elementsList = [];
 let linesList = [];
 
+let eraserActive = false;
+let mouseDown = false;
+
 // SLIDER
 const slider = document.getElementById("resize-slider")
 const output = document.getElementById("resize-slider-output");
@@ -15,10 +18,17 @@ output.innerHTML = slider.value;
 const clear = document.getElementById("clear-button");
 clear.addEventListener("click", clearGrid);
 
+// ERASER
+const eraser = document.getElementById("eraser-button");
+eraser.addEventListener("click", () => {
+    eraserActive = !eraserActive
+    updateMouse();
+    mouseDown = false;
+})
+
 // COLOR PICKER
 const colorPicker = document.getElementById("color");
 
-let mouseDown = false;
 
 slider.oninput = function() {
   output.innerHTML = this.value;
@@ -26,15 +36,26 @@ slider.oninput = function() {
   resizeGrid();
 }
 
+colorPicker.onclick = function() {
+    eraserActive = false;
+    updateMouse();
+}
+
 /////////////////////////////
 // MAIN
 /////////////////////////////
 createGrid();
 
-document.body.onmouseup = function() {
-    mouseDown = false;
-}
 
+function updateMouse()
+{
+    if(eraserActive) 
+        document.body.style.cursor = "url('./img/eraser.png'), auto";
+
+    else{
+        document.body.style.cursor = "default";
+    }
+}
 //FUNCTIONS
 function createGrid()
 {
@@ -52,11 +73,19 @@ function createGrid()
             gridElement.style.width = elementWidth + "px";
             gridElement.style.height = elementHeight + "px";
     
-            gridElement.addEventListener("mousedown", () => mouseDown = true);
+            gridElement.addEventListener("click", (element) => {
+                mouseDown = !mouseDown;
+                paint(element);
+            });
+
             gridElement.addEventListener("mouseover", paint);
             elementsList.push(gridElement);
 
-            gridContainer.appendChild(gridElement); 
+            gridContainer.appendChild(gridElement);
+            gridContainer.addEventListener("mouseleave", () => {
+                mouseDown = false
+                updateMouse();
+            });
         }
     }
 }
@@ -100,6 +129,13 @@ function paint(element)
 {
     if(!mouseDown) return;
 
+    if(eraserActive)
+    {
+        element.currentTarget.classList.remove("painted");
+        element.currentTarget.style.backgroundColor = "";
+
+        return;
+    }
     element.currentTarget.classList.add("painted");
     element.currentTarget.style.backgroundColor = colorPicker.value;
 }
